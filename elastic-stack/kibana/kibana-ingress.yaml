@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kibana
+    meta.helm.sh/release-namespace: elastic
+  creationTimestamp: "2024-09-23T10:04:50Z"
+  generation: 1
+  labels:
+    app: kibana
+    app.kubernetes.io/managed-by: Helm
+    heritage: Helm
+    release: kibana
+  name: kibana-kibana
+  namespace: elastic
+  resourceVersion: "437622"
+  uid: f1fb2bbd-a102-41cb-9ccf-69bc9ff98ab6
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: kibana-dqs.mogiio.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: kibana-kibana
+            port:
+              number: 5601
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - kibana-dqs.mogiio.com
+    secretName: mogiio-com-tls-secret
+status:
+  loadBalancer:
+    ingress:
+    - ip: 216.48.177.209
+    - ip: 216.48.177.65
+    - ip: 216.48.179.37
+    - ip: 216.48.182.254
+    - ip: 216.48.183.13
